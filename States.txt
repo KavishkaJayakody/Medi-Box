@@ -1,0 +1,58 @@
+ [IDLE State]
+    │
+    ├── Shows current time
+    │
+    └── SELECT button press
+        │
+        └── → [MAIN_MENU State]
+            │
+            ├── Shows menu options:
+            │   1. Set timezone
+            │   2. Set alarm
+            │   3. View alarms
+            │   4. Delete alarm
+            │
+            ├── UP/DOWN buttons
+            │   └── Navigate menu items
+            │
+            ├── SELECT button press
+            │   │
+            │   ├── Option 1 → [SET_TIMEZONE State]
+            │   │   ├── UP/DOWN: Adjust timezone
+            │   │   ├── SELECT: Save timezone
+            │   │   └── BACK: Cancel
+            │   │
+            │   ├── Option 2 → [SET_ALARM State]
+            │   │   ├── UP/DOWN: Adjust hour/minute
+            │   │   ├── SELECT: Next/Confirm
+            │   │   └── BACK: Cancel
+            │   │
+            │   ├── Option 3 → [VIEW_ALARMS State]
+            │   │   └── BACK: Return to menu
+            │   │
+            │   └── Option 4 → [DELETE_ALARM State]
+            │       ├── UP/DOWN: Select alarm
+            │       ├── SELECT: Delete alarm
+            │       └── BACK: Cancel
+            │
+            └── BACK button press
+                └── → [IDLE State]
+
+[Special States]
+    │
+    ├── [ALARM_RINGING State]
+    │   ├── Triggered when alarm time matches
+    │   ├── Shows "ALARM!" message
+    │   └── SELECT button press
+    │       └── → [ALARM_SNOOZED State]
+    │
+    └── [ALARM_SNOOZED State]
+        ├── 5-minute snooze period
+        └── → [ALARM_RINGING State] after 5 minutes
+
+[Environment Monitoring]
+    │
+    └── [WARNING State]
+        ├── Triggered by temperature/humidity out of range
+        ├── Shows warning message
+        └── LED indicator on4
